@@ -586,19 +586,13 @@ document.addEventListener('keydown', e => {
   if(e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(o => { o.classList.remove('open'); document.body.style.overflow=''; });
 });
 
-// ── CLAUDE API ──
-// ⚠️ Remplace VOTRE_CLÉ_API par ta vraie clé Anthropic (sk-ant-...)
-const API_KEY = 'VOTRE_CLÉ_API';
+// ── CLAUDE API via Make.com proxy (clé sécurisée) ──
+const MAKE_URL = 'https://hook.eu1.make.com/cq6av0qcveaupj1to0gba7pgpa49fitb';
 
 async function callClaude(system, messages) {
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
+  const res = await fetch(MAKE_URL, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': API_KEY,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true'
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system, messages })
   });
   const d = await res.json();
