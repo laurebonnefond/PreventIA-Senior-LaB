@@ -590,13 +590,21 @@ document.addEventListener('keydown', e => {
 const MAKE_URL = 'https://hook.eu1.make.com/cq6av0qcveaupj1to0gba7pgpa49fitb';
 
 async function callClaude(system, messages) {
+  const payload = JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system, messages });
   const res = await fetch(MAKE_URL, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system, messages })
+    headers: {
+      'Content-Type': 'text/plain'
+    },
+    body: payload
   });
-  const d = await res.json();
-  return d.content?.[0]?.text || 'Désolé, une erreur est survenue.';
+  const text = await res.text();
+  try {
+    const d = JSON.parse(text);
+    return d.content?.[0]?.text || d.output || text;
+  } catch {
+    return text || 'Désolé, une erreur est survenue.';
+  }
 }
 
 // ── OUTIL 1 COGNITION ──
