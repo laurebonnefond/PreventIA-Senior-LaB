@@ -2,13 +2,13 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>PréventIA Senior LaB</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --cream: #FAF6EF;
-  --cream2: #F4EFE6;
+  --cream2: #F0EAE0;
   --gold: #C9973A;
   --gold-light: #E8C57A;
   --warm-brown: #4A3728;
@@ -24,175 +24,345 @@
   --coral-light: #FAE5DF;
   --serif: 'Playfair Display', Georgia, serif;
   --sans: 'DM Sans', sans-serif;
+  --radius: 20px;
 }
-* { margin:0; padding:0; box-sizing:border-box; }
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
 body { font-family: var(--sans); background: var(--cream); color: var(--text); overflow-x: hidden; }
 
-/* HERO */
+/* ── HERO ── */
 .hero {
-  min-height: 90vh; display: flex; flex-direction: column;
+  min-height: 88vh; display: flex; flex-direction: column;
   justify-content: center; align-items: center; text-align: center;
-  padding: 80px 24px 60px;
-  background: radial-gradient(ellipse 80% 55% at 50% 0%, rgba(201,151,58,0.13) 0%, transparent 70%),
-              radial-gradient(ellipse 55% 40% at 85% 85%, rgba(62,158,150,0.09) 0%, transparent 60%), var(--cream);
+  padding: 80px 32px 60px;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 0%, rgba(201,151,58,0.13) 0%, transparent 70%),
+    radial-gradient(ellipse 55% 40% at 85% 85%, rgba(62,158,150,0.09) 0%, transparent 60%),
+    var(--cream);
   position: relative;
 }
+
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
   background: white; border: 1px solid rgba(201,151,58,0.25); border-radius: 40px;
-  padding: 8px 20px; font-size: 12px; font-weight: 500; color: var(--gold);
-  letter-spacing: 0.05em; margin-bottom: 36px;
+  padding: 10px 24px; font-size: 14px; font-weight: 500; color: var(--gold);
+  letter-spacing: 0.04em; margin-bottom: 36px;
   box-shadow: 0 2px 14px rgba(201,151,58,0.1);
   animation: fadeUp 0.6s ease both;
 }
+
 .hero h1 {
   font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 700;
   line-height: 1.06; color: var(--warm-brown); margin-bottom: 22px;
   animation: fadeUp 0.7s 0.08s ease both;
 }
 .hero h1 em { font-style: italic; color: var(--gold); }
+
 .hero p {
-  font-size: clamp(1rem, 1.8vw, 1.15rem); color: var(--muted); font-weight: 300;
-  max-width: 520px; line-height: 1.75; margin-bottom: 44px;
+  font-size: clamp(1.05rem, 2vw, 1.2rem); color: var(--muted); font-weight: 300;
+  max-width: 540px; line-height: 1.8; margin-bottom: 48px;
   animation: fadeUp 0.7s 0.15s ease both;
 }
+
 .hero-arrow {
-  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
-  color: var(--gold); font-size: 22px; opacity: 0.6;
+  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+  color: var(--gold); font-size: 24px; opacity: 0.55;
   animation: fadeUp 1s 0.5s ease both, bob 2s 1.5s ease-in-out infinite;
 }
 
-/* SECTION */
-.section-header { text-align: center; padding: 90px 24px 52px; }
-.eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+/* ── SECTION HEADER ── */
+.section-header { text-align: center; padding: 80px 24px 48px; }
+.eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
 .section-header h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); color: var(--warm-brown); line-height: 1.2; }
 
-/* GRID */
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; max-width: 1160px; margin: 0 auto; padding: 0 32px 90px; }
+/* ── GRID CARDS ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 1000px; margin: 0 auto; padding: 0 32px 90px;
+}
 
-/* CARD */
-.card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 2px 20px rgba(44,31,20,0.06); transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s; display: flex; flex-direction: column; }
-.card:hover { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(44,31,20,0.11); }
-.card-top { height: 150px; display: flex; align-items: center; justify-content: center; }
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; padding: 0 20px 60px; }
+}
+
+/* ── CARD ── */
+.card {
+  background: white; border-radius: 24px; overflow: hidden;
+  box-shadow: 0 2px 20px rgba(44,31,20,0.07);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
+  user-select: none;
+}
+
+.card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(44,31,20,0.13); }
+.card:active { transform: scale(0.97); }
+
+.card-top {
+  height: 140px; display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
 .card-1 .card-top { background: linear-gradient(135deg, var(--violet) 0%, var(--violet-light) 100%); }
 .card-2 .card-top { background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%); }
 .card-3 .card-top { background: linear-gradient(135deg, var(--sage) 0%, var(--sage-light) 100%); }
 .card-4 .card-top { background: linear-gradient(135deg, var(--coral) 0%, var(--coral-light) 100%); }
-.card-emoji { font-size: 58px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15)); transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); }
-.card:hover .card-emoji { transform: scale(1.14) rotate(-4deg); }
-.card-body { padding: 26px 28px 30px; flex: 1; display: flex; flex-direction: column; }
-.card-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+
+.card-emoji {
+  font-size: 56px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.card:hover .card-emoji { transform: scale(1.15) rotate(-5deg); }
+
+.card-body { padding: 24px 26px 28px; }
+
+.card-tag {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 10px;
+}
 .card-1 .card-tag { background: var(--violet-light); color: var(--violet); }
 .card-2 .card-tag { background: var(--teal-light); color: var(--teal); }
 .card-3 .card-tag { background: var(--sage-light); color: var(--sage); }
 .card-4 .card-tag { background: var(--coral-light); color: var(--coral); }
-.card-body h3 { font-family: var(--serif); font-size: 1.3rem; color: var(--warm-brown); margin-bottom: 10px; line-height: 1.3; }
-.card-body > p { font-size: 13.5px; color: var(--muted); font-weight: 300; line-height: 1.7; margin-bottom: 18px; }
 
-/* TOGGLE */
-.toggle-btn { display: flex; align-items: center; gap: 8px; background: none; border: 1.5px solid; border-radius: 40px; padding: 9px 20px; font-family: var(--sans); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.22s; align-self: flex-start; }
-.card-1 .toggle-btn { border-color: var(--violet); color: var(--violet); }
-.card-2 .toggle-btn { border-color: var(--teal); color: var(--teal); }
-.card-3 .toggle-btn { border-color: var(--sage); color: var(--sage); }
-.card-4 .toggle-btn { border-color: var(--coral); color: var(--coral); }
-.card-1 .toggle-btn:hover { background: var(--violet); color: white; }
-.card-2 .toggle-btn:hover { background: var(--teal); color: white; }
-.card-3 .toggle-btn:hover { background: var(--sage); color: white; }
-.card-4 .toggle-btn:hover { background: var(--coral); color: white; }
+.card-body h3 { font-family: var(--serif); font-size: 1.25rem; color: var(--warm-brown); margin-bottom: 8px; line-height: 1.3; }
+.card-body p { font-size: 13.5px; color: var(--muted); font-weight: 300; line-height: 1.65; margin-bottom: 18px; }
 
-/* TOOL AREA */
-.tool-area { display: none; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(44,31,20,0.07); animation: fadeUp 0.3s ease both; }
-.tool-area.open { display: block; }
+.open-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 13px 20px; border-radius: 40px; border: none;
+  font-family: var(--sans); font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: all 0.22s;
+  min-height: 48px; /* touch target */
+}
+.card-1 .open-btn { background: var(--violet); color: white; }
+.card-2 .open-btn { background: var(--teal); color: white; }
+.card-3 .open-btn { background: var(--sage); color: white; }
+.card-4 .open-btn { background: var(--coral); color: white; }
+.open-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+.open-btn:active { transform: scale(0.97); }
 
-/* CHAT */
-.chat-window { background: var(--cream2); border-radius: 14px; padding: 16px; min-height: 220px; max-height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; scrollbar-width: thin; scrollbar-color: rgba(201,151,58,0.2) transparent; }
-.msg { display: flex; gap: 8px; align-items: flex-start; animation: fadeUp 0.3s ease both; }
+/* ── MODAL OVERLAY ── */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(44,31,20,0.55);
+  backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+/* ── MODAL PANEL ── */
+.modal {
+  background: var(--cream);
+  border-radius: 28px;
+  width: 100%; max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 32px 80px rgba(44,31,20,0.25);
+  transform: translateY(30px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  scrollbar-width: thin; scrollbar-color: rgba(201,151,58,0.2) transparent;
+}
+.modal-overlay.open .modal { transform: translateY(0) scale(1); }
+
+/* Modal header */
+.modal-head {
+  padding: 28px 32px 24px;
+  display: flex; align-items: center; gap: 18px;
+  position: sticky; top: 0; z-index: 2;
+  background: var(--cream);
+  border-bottom: 1px solid rgba(44,31,20,0.08);
+}
+
+.modal-icon {
+  font-size: 2.8rem; width: 64px; height: 64px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 18px; flex-shrink: 0;
+}
+.m1 .modal-icon { background: var(--violet-light); }
+.m2 .modal-icon { background: var(--teal-light); }
+.m3 .modal-icon { background: var(--sage-light); }
+.m4 .modal-icon { background: var(--coral-light); }
+
+.modal-title { flex: 1; }
+.modal-title h2 { font-family: var(--serif); font-size: 1.65rem; color: var(--warm-brown); line-height: 1.2; margin-bottom: 4px; }
+.modal-title p { font-size: 14px; color: var(--muted); font-weight: 300; line-height: 1.5; }
+
+.close-btn {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--cream2); border: none; cursor: pointer;
+  font-size: 20px; color: var(--muted); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; min-height: 48px;
+}
+.close-btn:hover { background: var(--warm-brown); color: white; }
+
+/* Modal body */
+.modal-body { padding: 28px 32px 36px; }
+
+/* ── SENIOR-FRIENDLY INPUTS ── */
+.s-input {
+  width: 100%; background: white;
+  border: 2px solid rgba(44,31,20,0.12); border-radius: 16px;
+  padding: 16px 22px; font-family: var(--sans); font-size: 17px;
+  color: var(--text); outline: none; transition: border-color 0.2s;
+  min-height: 56px;
+}
+.s-input:focus { border-color: var(--gold); }
+.s-input::placeholder { color: var(--muted); }
+
+.s-btn {
+  padding: 16px 28px; border-radius: 40px; border: none;
+  cursor: pointer; font-family: var(--sans); font-size: 16px; font-weight: 600;
+  transition: all 0.22s; min-height: 56px; min-width: 120px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+}
+.s-btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+.s-btn:active { transform: scale(0.97); }
+.s-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; filter: none; }
+.btn-v { background: var(--violet); color: white; }
+.btn-g { background: var(--gold); color: white; }
+.btn-s { background: var(--sage); color: white; }
+
+/* ── CHAT ── */
+.chat-win {
+  background: white; border-radius: 18px; border: 1.5px solid rgba(44,31,20,0.08);
+  padding: 20px; min-height: 260px; max-height: 360px;
+  overflow-y: auto; display: flex; flex-direction: column; gap: 14px;
+  margin-bottom: 16px; scrollbar-width: thin;
+}
+
+.msg { display: flex; gap: 10px; align-items: flex-start; animation: fadeUp 0.3s ease both; }
 .msg.user { flex-direction: row-reverse; }
-.msg-av { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; background: rgba(201,151,58,0.12); }
+
+.msg-av {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; background: rgba(201,151,58,0.1);
+}
 .msg.user .msg-av { background: rgba(44,31,20,0.06); }
-.msg-bubble { max-width: 82%; padding: 10px 14px; border-radius: 14px; font-size: 13.5px; line-height: 1.65; font-weight: 300; color: var(--text); }
-.msg.ai .msg-bubble { background: white; border: 1px solid rgba(44,31,20,0.07); border-radius: 4px 14px 14px 14px; }
-.msg.user .msg-bubble { background: rgba(201,151,58,0.1); border: 1px solid rgba(201,151,58,0.18); border-radius: 14px 4px 14px 14px; }
-.chat-row { display: flex; gap: 8px; }
-.chat-inp { flex: 1; background: white; border: 1px solid rgba(44,31,20,0.12); border-radius: 40px; padding: 10px 18px; font-family: var(--sans); font-size: 13px; color: var(--text); outline: none; transition: border-color 0.2s; }
-.chat-inp:focus { border-color: var(--gold); }
-.chat-inp::placeholder { color: var(--muted); }
-.send-btn { width: 40px; height: 40px; border-radius: 50%; border: none; cursor: pointer; font-size: 15px; transition: all 0.2s; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.card-2 .send-btn { background: var(--teal); color: white; }
-.card-4 .send-btn { background: var(--coral); color: white; }
-.send-btn:hover { transform: scale(1.08); }
-.send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
-/* EXERCISE */
-.exo-zone { background: var(--cream2); border-radius: 14px; padding: 24px; text-align: center; min-height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; border: 1px solid rgba(44,31,20,0.07); margin-bottom: 12px; }
-.exo-badge { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--violet); background: var(--violet-light); padding: 3px 10px; border-radius: 20px; }
-.exo-question { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--warm-brown); line-height: 1.4; }
-.score-line { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.score-label { font-size: 12px; color: var(--muted); }
-.score-val { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: var(--violet); }
-.ans-row { display: flex; gap: 8px; margin-bottom: 10px; }
-.ans-inp { flex: 1; background: white; border: 1px solid rgba(44,31,20,0.12); border-radius: 40px; padding: 10px 18px; font-family: var(--sans); font-size: 13px; color: var(--text); outline: none; transition: border-color 0.2s; }
-.ans-inp:focus { border-color: var(--violet); }
-.ans-inp::placeholder { color: var(--muted); }
-.action-btn { padding: 10px 20px; border-radius: 40px; border: none; cursor: pointer; font-family: var(--sans); font-size: 12.5px; font-weight: 600; transition: all 0.2s; white-space: nowrap; }
-.btn-violet { background: var(--violet); color: white; }
-.btn-gold { background: var(--gold); color: white; }
-.btn-sage { background: var(--sage); color: white; }
-.action-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
-.action-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; filter: none; }
-.feedback-box { background: var(--cream2); border-radius: 12px; padding: 14px 18px; font-size: 13px; line-height: 1.7; color: var(--muted); border: 1px solid rgba(44,31,20,0.07); font-weight: 300; min-height: 50px; }
+.msg-bubble {
+  max-width: 78%; padding: 14px 18px;
+  font-size: 16px; line-height: 1.7; font-weight: 300; color: var(--text);
+  border-radius: 18px;
+}
+.msg.ai  .msg-bubble { background: var(--cream2); border-radius: 4px 18px 18px 18px; }
+.msg.user .msg-bubble { background: rgba(201,151,58,0.12); border-radius: 18px 4px 18px 18px; text-align: right; }
 
-/* QUESTIONNAIRE */
-.q-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
-.q-item { background: var(--cream2); border-radius: 12px; padding: 14px 18px; border: 1px solid rgba(44,31,20,0.06); }
-.q-text { font-size: 13.5px; color: var(--text); margin-bottom: 10px; line-height: 1.5; }
-.opts { display: flex; gap: 7px; flex-wrap: wrap; }
-.opt { padding: 5px 14px; border-radius: 20px; border: 1px solid rgba(44,31,20,0.15); background: white; color: var(--muted); font-family: var(--sans); font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.18s; }
-.opt:hover { border-color: var(--sage); color: var(--sage); }
-.opt.sel { background: var(--sage-light); border-color: var(--sage); color: var(--sage); }
-.result-area { background: var(--cream2); border-radius: 14px; padding: 16px 18px; font-size: 13px; line-height: 1.8; color: var(--text); font-weight: 300; border: 1px solid rgba(44,31,20,0.07); display: none; margin-top: 12px; }
+.chat-row { display: flex; gap: 10px; }
+
+/* ── EXERCISE ── */
+.exo-zone {
+  background: white; border-radius: 18px; border: 1.5px solid rgba(44,31,20,0.08);
+  padding: 32px 28px; text-align: center; min-height: 180px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  margin-bottom: 18px;
+}
+
+.exo-badge {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--violet); background: var(--violet-light); padding: 5px 14px; border-radius: 20px;
+}
+
+.exo-question {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.5rem; color: var(--warm-brown); line-height: 1.4; max-width: 480px;
+}
+
+.score-row {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
+}
+.score-label { font-size: 14px; color: var(--muted); }
+.score-val { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; color: var(--violet); }
+
+.ans-row { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+
+.feedback-box {
+  background: white; border-radius: 14px; border: 1.5px solid rgba(44,31,20,0.08);
+  padding: 16px 20px; font-size: 16px; line-height: 1.75; color: var(--muted); font-weight: 300;
+}
+
+/* ── QUESTIONNAIRE ── */
+.q-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
+
+.q-item { background: white; border-radius: 16px; border: 1.5px solid rgba(44,31,20,0.08); padding: 18px 22px; }
+
+.q-text { font-size: 16px; color: var(--text); margin-bottom: 14px; line-height: 1.55; font-weight: 400; }
+
+.opts { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.opt {
+  padding: 10px 20px; border-radius: 40px;
+  border: 2px solid rgba(44,31,20,0.12); background: var(--cream);
+  color: var(--muted); font-family: var(--sans); font-size: 15px; font-weight: 500;
+  cursor: pointer; transition: all 0.18s; min-height: 44px;
+}
+.opt:hover { border-color: var(--sage); color: var(--sage); background: var(--sage-light); }
+.opt.sel { background: var(--sage-light); border-color: var(--sage); color: var(--sage); font-weight: 600; }
+
+.result-area {
+  background: white; border-radius: 16px; border: 1.5px solid rgba(44,31,20,0.08);
+  padding: 20px 22px; font-size: 15.5px; line-height: 1.85; color: var(--text);
+  font-weight: 300; display: none; margin-top: 16px;
+}
 .result-area.show { display: block; }
 
-/* TYPING */
-.typing { display: flex; gap: 5px; align-items: center; padding: 4px 0; }
-.typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 1.2s ease infinite; }
+/* ── ABOUT BAND ── */
+.about-band { background: var(--warm-brown); color: #FAF6EF; padding: 80px 40px; }
+.about-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.about-text h2 { font-family: var(--serif); font-size: clamp(1.8rem,3vw,2.4rem); margin-bottom: 18px; line-height: 1.25; }
+.about-text h2 em { color: var(--gold-light); font-style: italic; }
+.about-text p { font-size: 15px; font-weight: 300; line-height: 1.85; color: rgba(250,246,239,0.75); }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.stat { text-align: center; padding: 22px 16px; background: rgba(255,255,255,0.05); border-radius: 16px; border: 1px solid rgba(255,255,255,0.07); }
+.stat-n { font-family: var(--serif); font-size: 2.2rem; color: var(--gold-light); display: block; line-height: 1; margin-bottom: 6px; }
+.stat-l { font-size: 12px; color: rgba(250,246,239,0.55); line-height: 1.4; }
+
+@media (max-width: 640px) {
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .about-band { padding: 60px 24px; }
+}
+
+/* ── FEEDBACK ── */
+.feedback-section { max-width: 600px; margin: 70px auto; padding: 0 24px; text-align: center; }
+.feedback-card { background: white; border-radius: 24px; padding: 40px 36px; box-shadow: 0 4px 28px rgba(44,31,20,0.07); }
+.feedback-card h2 { font-family: var(--serif); font-size: 1.7rem; color: var(--warm-brown); margin-bottom: 12px; }
+.feedback-card p { font-size: 15px; color: var(--muted); font-weight: 300; line-height: 1.75; margin-bottom: 28px; }
+.feedback-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--warm-brown); color: #FAF6EF; padding: 15px 32px; border-radius: 40px; text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.22s; min-height: 52px; }
+.feedback-btn:hover { background: var(--gold); transform: translateY(-2px); }
+
+/* ── FOOTER ── */
+footer { text-align: center; padding: 24px; font-size: 13px; color: var(--muted); border-top: 1px solid rgba(44,31,20,0.08); font-weight: 300; }
+footer strong { color: var(--warm-brown); font-weight: 500; }
+
+/* ── TYPING ── */
+.typing { display: flex; gap: 6px; align-items: center; padding: 4px 0; }
+.typing span { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: pulse 1.2s ease infinite; }
 .typing span:nth-child(2) { animation-delay: 0.2s; }
 .typing span:nth-child(3) { animation-delay: 0.4s; }
 
-/* ABOUT */
-.about-band { background: var(--warm-brown); color: #FAF6EF; padding: 80px 40px; }
-.about-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.about-text h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 18px; line-height: 1.25; }
-.about-text h2 em { color: var(--gold-light); font-style: italic; }
-.about-text p { font-size: 14.5px; font-weight: 300; line-height: 1.85; color: rgba(250,246,239,0.75); }
-.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.stat { text-align: center; padding: 22px 16px; background: rgba(255,255,255,0.05); border-radius: 16px; border: 1px solid rgba(255,255,255,0.07); }
-.stat-n { font-family: var(--serif); font-size: 2.2rem; color: var(--gold-light); display: block; line-height: 1; margin-bottom: 6px; }
-.stat-l { font-size: 11.5px; color: rgba(250,246,239,0.55); line-height: 1.4; }
-
-/* FEEDBACK */
-.feedback-section { max-width: 640px; margin: 80px auto; padding: 0 32px; text-align: center; }
-.feedback-card { background: white; border-radius: 24px; padding: 40px; box-shadow: 0 4px 28px rgba(44,31,20,0.07); }
-.feedback-card h2 { font-family: var(--serif); font-size: 1.7rem; color: var(--warm-brown); margin-bottom: 12px; }
-.feedback-card p { font-size: 14px; color: var(--muted); font-weight: 300; line-height: 1.75; margin-bottom: 28px; }
-.feedback-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--warm-brown); color: #FAF6EF; padding: 13px 30px; border-radius: 40px; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.22s; }
-.feedback-btn:hover { background: var(--gold); transform: translateY(-2px); }
-
-/* FOOTER */
-footer { text-align: center; padding: 24px; font-size: 12px; color: var(--muted); border-top: 1px solid rgba(44,31,20,0.08); font-weight: 300; }
-footer strong { color: var(--warm-brown); font-weight: 500; }
-
-/* ANIMATIONS */
+/* ── ANIMATIONS ── */
 @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
-@keyframes bob { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(7px); } }
+@keyframes bob { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(8px); } }
 @keyframes pulse { 0%,80%,100% { opacity:0.2; transform:scale(0.85); } 40% { opacity:1; transform:scale(1); } }
+
 .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.65s ease, transform 0.65s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
 
-@media (max-width: 700px) {
-  .about-inner { grid-template-columns: 1fr; gap: 40px; }
-  .grid { padding: 0 16px 60px; }
+/* ── MODAL RESPONSIVE ── */
+@media (max-width: 640px) {
+  .modal { border-radius: 24px 24px 0 0; max-height: 95vh; }
+  .modal-overlay { align-items: flex-end; padding: 0; }
+  .modal-head { padding: 22px 20px 18px; }
+  .modal-body { padding: 20px 20px 32px; }
+  .exo-question { font-size: 1.25rem; }
+  .modal-title h2 { font-size: 1.35rem; }
 }
 </style>
 </head>
@@ -202,7 +372,7 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
 <section class="hero">
   <div class="hero-badge">🌿 PréventIA Senior LaB · Limoges 2026</div>
   <h1>L'IA qui prend <em>soin</em><br>des seniors</h1>
-  <p>Quatre outils intelligents pour stimuler l'esprit, apaiser les nuits, prévenir les chutes et recréer du lien — une approche de prévention humaine et éthique.</p>
+  <p>Quatre outils intelligents pour stimuler l'esprit, apaiser les nuits, prévenir les chutes et recréer du lien.</p>
   <div class="hero-arrow">↓</div>
 </section>
 
@@ -215,94 +385,152 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
 <!-- GRID -->
 <div class="grid">
 
-  <!-- OUTIL 1 : COGNITION -->
-  <div class="card card-1 reveal">
+  <div class="card card-1 reveal" onclick="openModal('m1')">
     <div class="card-top"><span class="card-emoji">🧠</span></div>
     <div class="card-body">
       <span class="card-tag">Cognition</span>
       <h3>Stimuler l'Esprit</h3>
-      <p>Exercices adaptatifs de mémoire, langage et raisonnement générés par IA selon votre niveau.</p>
-      <button class="toggle-btn" onclick="toggle('cog', this)">▶ Essayer l'outil</button>
-      <div class="tool-area" id="cog">
-        <div class="score-line">
-          <span class="score-label">Score session</span>
-          <span class="score-val" id="cog-score">0 pts</span>
-        </div>
-        <div class="exo-zone" id="exo-zone">
-          <p style="color:var(--muted);font-size:13px;">Cliquez sur « Nouveau » pour commencer</p>
-        </div>
-        <div class="ans-row">
-          <input class="ans-inp" id="cog-ans" placeholder="Votre réponse…" onkeydown="if(event.key==='Enter')checkAnswer()">
-          <button class="action-btn btn-violet" id="cog-check" onclick="checkAnswer()" disabled>Valider</button>
-          <button class="action-btn btn-gold" onclick="newExercise()">Nouveau</button>
-        </div>
-        <div class="feedback-box" id="cog-fb">Bienvenue ! Commencez avec « Nouveau ».</div>
-      </div>
+      <p>Exercices adaptatifs de mémoire, langage et raisonnement générés par IA.</p>
+      <button class="open-btn">▶ &nbsp;Essayer l'outil</button>
     </div>
   </div>
 
-  <!-- OUTIL 2 : PSYCHOSOCIAL -->
-  <div class="card card-2 reveal">
+  <div class="card card-2 reveal" onclick="openModal('m2')">
     <div class="card-top"><span class="card-emoji">😌</span></div>
     <div class="card-body">
       <span class="card-tag">Bien-être psychique</span>
       <h3>Apaiser Sommeil & Anxiété</h3>
-      <p>Un compagnon bienveillant disponible 24h/24 pour écouter, apaiser et accompagner les moments difficiles.</p>
-      <button class="toggle-btn" onclick="toggle('chat2', this)">▶ Ouvrir la conversation</button>
-      <div class="tool-area" id="chat2">
-        <div class="chat-window" id="cw2">
-          <div class="msg ai"><div class="msg-av">🌿</div><div class="msg-bubble">Bonjour, je suis là pour vous écouter. Comment vous sentez-vous aujourd'hui ?</div></div>
-        </div>
-        <div class="chat-row">
-          <input class="chat-inp" id="inp2" placeholder="Exprimez-vous librement…" onkeydown="if(event.key==='Enter')sendChat(2)">
-          <button class="send-btn" onclick="sendChat(2)">→</button>
-        </div>
-      </div>
+      <p>Un compagnon bienveillant pour écouter et accompagner les moments difficiles.</p>
+      <button class="open-btn">▶ &nbsp;Ouvrir la conversation</button>
     </div>
   </div>
 
-  <!-- OUTIL 3 : CHUTE -->
-  <div class="card card-3 reveal">
+  <div class="card card-3 reveal" onclick="openModal('m3')">
     <div class="card-top"><span class="card-emoji">🏃</span></div>
     <div class="card-body">
       <span class="card-tag">Prévention des chutes</span>
       <h3>Évaluer le Risque de Chute</h3>
-      <p>Questionnaire validé d'évaluation de la sédentarité et du risque de chute, analysé par IA.</p>
-      <button class="toggle-btn" onclick="toggle('risk', this)">▶ Démarrer l'évaluation</button>
-      <div class="tool-area" id="risk">
-        <div class="q-list">
-          <div class="q-item"><p class="q-text">1. Chutes dans les 12 derniers mois ?</p><div class="opts"><button class="opt" onclick="setQ(this,'q1','Aucune chute')">Non</button><button class="opt" onclick="setQ(this,'q1','1 chute')">1 fois</button><button class="opt" onclick="setQ(this,'q1','2 chutes ou plus')">2 ou +</button></div></div>
-          <div class="q-item"><p class="q-text">2. Difficulté à se lever d'une chaise sans les bras ?</p><div class="opts"><button class="opt" onclick="setQ(this,'q2','Aucune difficulté')">Non</button><button class="opt" onclick="setQ(this,'q2','Difficulté modérée')">Modérée</button><button class="opt" onclick="setQ(this,'q2','Impossible seul')">Impossible</button></div></div>
-          <div class="q-item"><p class="q-text">3. Temps assis par jour (hors sommeil) ?</p><div class="opts"><button class="opt" onclick="setQ(this,'q3','Moins de 4h/j')">&lt; 4h</button><button class="opt" onclick="setQ(this,'q3','Entre 4 et 8h/j')">4–8h</button><button class="opt" onclick="setQ(this,'q3','Plus de 8h/j')">&gt; 8h</button></div></div>
-          <div class="q-item"><p class="q-text">4. Médicaments pouvant provoquer vertiges ou somnolence ?</p><div class="opts"><button class="opt" onclick="setQ(this,'q4','Aucun')">Non</button><button class="opt" onclick="setQ(this,'q4','1 médicament à risque')">1</button><button class="opt" onclick="setQ(this,'q4','2 médicaments à risque ou plus')">2 ou +</button></div></div>
-          <div class="q-item"><p class="q-text">5. Peur de tomber dans le quotidien ?</p><div class="opts"><button class="opt" onclick="setQ(this,'q5','Pas de peur')">Pas du tout</button><button class="opt" onclick="setQ(this,'q5','Peur modérée')">Parfois</button><button class="opt" onclick="setQ(this,'q5','Forte peur')">Souvent</button></div></div>
-        </div>
-        <button class="action-btn btn-sage" id="eval-btn" onclick="evaluateRisk()" disabled style="width:100%;">Analyser mon profil</button>
-        <div class="result-area" id="risk-res"></div>
-      </div>
+      <p>Questionnaire validé analysé par IA pour mieux prévenir les chutes.</p>
+      <button class="open-btn">▶ &nbsp;Démarrer l'évaluation</button>
     </div>
   </div>
 
-  <!-- OUTIL 4 : LIEN SOCIAL -->
-  <div class="card card-4 reveal">
+  <div class="card card-4 reveal" onclick="openModal('m4')">
     <div class="card-top"><span class="card-emoji">🤝</span></div>
     <div class="card-body">
       <span class="card-tag">Lien social</span>
       <h3>Recréer du Lien</h3>
-      <p>Un assistant conversationnel chaleureux pour briser l'isolement, partager souvenirs et stimuler la curiosité.</p>
-      <button class="toggle-btn" onclick="toggle('chat4', this)">▶ Commencer une conversation</button>
-      <div class="tool-area" id="chat4">
-        <div class="chat-window" id="cw4">
-          <div class="msg ai"><div class="msg-av">🤝</div><div class="msg-bubble">Bonjour ! Qu'est-ce qui vous a fait sourire aujourd'hui ? Racontez-moi…</div></div>
-        </div>
-        <div class="chat-row">
-          <input class="chat-inp" id="inp4" placeholder="Parlez-moi de vous…" onkeydown="if(event.key==='Enter')sendChat(4)">
-          <button class="send-btn" onclick="sendChat(4)">→</button>
-        </div>
-      </div>
+      <p>Un assistant conversationnel chaleureux pour briser l'isolement au quotidien.</p>
+      <button class="open-btn">▶ &nbsp;Commencer une conversation</button>
     </div>
   </div>
 
+</div>
+
+<!-- ══ MODAL 1 : COGNITION ══ -->
+<div class="modal-overlay" id="overlay-m1" onclick="closeOnBg(event,'m1')">
+  <div class="modal m1">
+    <div class="modal-head">
+      <div class="modal-icon">🧠</div>
+      <div class="modal-title">
+        <h2>Stimuler l'Esprit</h2>
+        <p>Exercices de mémoire, langage et raisonnement</p>
+      </div>
+      <button class="close-btn" onclick="closeModal('m1')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="score-row">
+        <span class="score-label">Score de la session</span>
+        <span class="score-val" id="cog-score">0 pts</span>
+      </div>
+      <div class="exo-zone" id="exo-zone">
+        <p style="color:var(--muted);font-size:17px;">Appuyez sur « Nouvel exercice » pour commencer</p>
+      </div>
+      <div class="ans-row">
+        <input class="s-input" id="cog-ans" placeholder="Votre réponse…" onkeydown="if(event.key==='Enter')checkAnswer()" style="flex:1;">
+        <button class="s-btn btn-v" id="cog-check" onclick="checkAnswer()" disabled>Valider</button>
+        <button class="s-btn btn-g" onclick="newExercise()">Nouvel exercice</button>
+      </div>
+      <div class="feedback-box" id="cog-fb">Bienvenue ! Appuyez sur « Nouvel exercice » pour démarrer.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL 2 : PSYCHOSOCIAL ══ -->
+<div class="modal-overlay" id="overlay-m2" onclick="closeOnBg(event,'m2')">
+  <div class="modal m2">
+    <div class="modal-head">
+      <div class="modal-icon">😌</div>
+      <div class="modal-title">
+        <h2>Soutien Psychosocial</h2>
+        <p>Un compagnon bienveillant disponible 24h/24</p>
+      </div>
+      <button class="close-btn" onclick="closeModal('m2')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="chat-win" id="cw2">
+        <div class="msg ai">
+          <div class="msg-av">🌿</div>
+          <div class="msg-bubble">Bonjour, je suis là pour vous écouter. Comment vous sentez-vous aujourd'hui ?</div>
+        </div>
+      </div>
+      <div class="chat-row">
+        <input class="s-input" id="inp2" placeholder="Exprimez-vous librement…" onkeydown="if(event.key==='Enter')sendChat(2)" style="flex:1;">
+        <button class="s-btn" onclick="sendChat(2)" style="background:var(--teal);color:white;">Envoyer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL 3 : CHUTE ══ -->
+<div class="modal-overlay" id="overlay-m3" onclick="closeOnBg(event,'m3')">
+  <div class="modal m3">
+    <div class="modal-head">
+      <div class="modal-icon">🏃</div>
+      <div class="modal-title">
+        <h2>Risque de Chute</h2>
+        <p>Questionnaire validé analysé par IA</p>
+      </div>
+      <button class="close-btn" onclick="closeModal('m3')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="q-list">
+        <div class="q-item"><p class="q-text">1. Avez-vous fait une chute dans les 12 derniers mois ?</p><div class="opts"><button class="opt" onclick="setQ(this,'q1','Aucune chute')">Non</button><button class="opt" onclick="setQ(this,'q1','1 chute')">1 fois</button><button class="opt" onclick="setQ(this,'q1','2 chutes ou plus')">2 ou +</button></div></div>
+        <div class="q-item"><p class="q-text">2. Avez-vous du mal à vous lever d'une chaise sans vous aider des bras ?</p><div class="opts"><button class="opt" onclick="setQ(this,'q2','Aucune difficulté')">Non</button><button class="opt" onclick="setQ(this,'q2','Difficulté modérée')">Un peu</button><button class="opt" onclick="setQ(this,'q2','Impossible seul')">Impossible</button></div></div>
+        <div class="q-item"><p class="q-text">3. Combien de temps restez-vous assis par jour ?</p><div class="opts"><button class="opt" onclick="setQ(this,'q3','Moins de 4h/j')">Moins de 4h</button><button class="opt" onclick="setQ(this,'q3','Entre 4 et 8h/j')">4 à 8h</button><button class="opt" onclick="setQ(this,'q3','Plus de 8h/j')">Plus de 8h</button></div></div>
+        <div class="q-item"><p class="q-text">4. Prenez-vous des médicaments pouvant causer des vertiges ?</p><div class="opts"><button class="opt" onclick="setQ(this,'q4','Aucun')">Non</button><button class="opt" onclick="setQ(this,'q4','1 médicament à risque')">1</button><button class="opt" onclick="setQ(this,'q4','2 médicaments à risque ou plus')">2 ou +</button></div></div>
+        <div class="q-item"><p class="q-text">5. Avez-vous peur de tomber dans votre quotidien ?</p><div class="opts"><button class="opt" onclick="setQ(this,'q5','Pas de peur')">Pas du tout</button><button class="opt" onclick="setQ(this,'q5','Peur modérée')">Parfois</button><button class="opt" onclick="setQ(this,'q5','Forte peur')">Souvent</button></div></div>
+      </div>
+      <button class="s-btn btn-s" id="eval-btn" onclick="evaluateRisk()" disabled style="width:100%;font-size:17px;">Analyser mon profil</button>
+      <div class="result-area" id="risk-res"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL 4 : LIEN SOCIAL ══ -->
+<div class="modal-overlay" id="overlay-m4" onclick="closeOnBg(event,'m4')">
+  <div class="modal m4">
+    <div class="modal-head">
+      <div class="modal-icon">🤝</div>
+      <div class="modal-title">
+        <h2>Recréer du Lien</h2>
+        <p>Un assistant chaleureux contre l'isolement</p>
+      </div>
+      <button class="close-btn" onclick="closeModal('m4')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="chat-win" id="cw4">
+        <div class="msg ai">
+          <div class="msg-av">🤝</div>
+          <div class="msg-bubble">Bonjour ! Qu'est-ce qui vous a fait sourire aujourd'hui ? Racontez-moi…</div>
+        </div>
+      </div>
+      <div class="chat-row">
+        <input class="s-input" id="inp4" placeholder="Parlez-moi de vous…" onkeydown="if(event.key==='Enter')sendChat(4)" style="flex:1;">
+        <button class="s-btn" onclick="sendChat(4)" style="background:var(--coral);color:white;">Envoyer</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ABOUT -->
@@ -310,7 +538,7 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
   <div class="about-inner">
     <div class="about-text reveal">
       <h2>Une approche <em>humaine</em><br>de l'IA en santé</h2>
-      <p>Ces outils naissent d'une expertise de plus de 20 ans en santé au travail et en prévention des risques, combinée à une formation en IA & Big Data. Chaque solution est conçue dans le respect de l'autonomie, de la confidentialité et du soutien aux équipes soignantes.</p>
+      <p>Ces outils naissent d'une expertise de plus de 20 ans en santé au travail et en prévention des risques, combinée à une formation en IA & Big Data. Chaque solution est conçue dans le respect de l'autonomie et de la confidentialité.</p>
     </div>
     <div class="stats reveal">
       <div class="stat"><span class="stat-n">20+</span><span class="stat-l">ans d'expérience clinique</span></div>
@@ -325,8 +553,8 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
 <div class="feedback-section reveal">
   <div class="feedback-card">
     <h2>Votre avis compte</h2>
-    <p>Ces outils sont en cours de développement. Partagez vos retours d'usage pour nous aider à les améliorer et mieux répondre aux besoins des seniors et des soignants.</p>
-    <a class="feedback-btn" href="mailto:laure.bonnefond@spsti2387.fr">✉️ Envoyer un retour</a>
+    <p>Ces outils sont en cours de développement. Partagez vos retours pour nous aider à mieux répondre aux besoins des seniors et des soignants.</p>
+    <a class="feedback-btn" href="mailto:laure.bonnefond@spsti2387.fr">✉️ &nbsp;Envoyer un retour</a>
   </div>
 </div>
 
@@ -336,35 +564,54 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
 </footer>
 
 <script>
-// Reveal
+// ── REVEAL ──
 const obs = new IntersectionObserver(entries => {
   entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*90); obs.unobserve(e.target); } });
 },{ threshold:0.1 });
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// Toggle
-function toggle(id, btn) {
-  const el = document.getElementById(id);
-  const open = el.classList.toggle('open');
-  btn.textContent = open ? '▼ Fermer' : btn.textContent.replace('▼ Fermer','▶ Ouvrir');
-  if (!open) btn.textContent = btn.textContent.replace('▼','▶');
+// ── MODAL ──
+function openModal(id) {
+  document.getElementById('overlay-'+id).classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+function closeModal(id) {
+  document.getElementById('overlay-'+id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOnBg(e, id) {
+  if(e.target === document.getElementById('overlay-'+id)) closeModal(id);
+}
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(o => { o.classList.remove('open'); document.body.style.overflow=''; });
+});
 
-// Claude API
+// ── CLAUDE API ──
+// ⚠️ Remplace VOTRE_CLÉ_API par ta vraie clé Anthropic (sk-ant-...)
+const API_KEY = 'VOTRE_CLÉ_API';
+
 async function callClaude(system, messages) {
   const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({ model:'claude-sonnet-4-20250514', max_tokens:1000, system, messages })
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': API_KEY,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
+    body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system, messages })
   });
   const d = await res.json();
   return d.content?.[0]?.text || 'Désolé, une erreur est survenue.';
 }
 
-// OUTIL 1 COGNITION
+// ── OUTIL 1 COGNITION ──
 let cogScore=0, currentExo=null;
+
 async function newExercise() {
   const zone=document.getElementById('exo-zone');
-  document.getElementById('cog-ans').value=''; document.getElementById('cog-check').disabled=true;
+  document.getElementById('cog-ans').value='';
+  document.getElementById('cog-check').disabled=true;
   zone.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
   const sys=`Tu es expert en stimulation cognitive pour seniors. Génère un exercice court et bienveillant. Réponds UNIQUEMENT en JSON valide sans markdown : {"type":"Mémoire|Langage|Raisonnement|Culture générale","question":"...","answer":"...","hint":"..."}`;
   try {
@@ -372,13 +619,17 @@ async function newExercise() {
     currentExo=JSON.parse(raw);
     zone.innerHTML=`<span class="exo-badge">${currentExo.type}</span><p class="exo-question">${currentExo.question}</p>`;
     document.getElementById('cog-check').disabled=false;
-    document.getElementById('cog-fb').textContent='💡 '+currentExo.hint;
-  } catch { zone.innerHTML='<p style="color:var(--muted)">Erreur de connexion. Réessayez.</p>'; }
+    document.getElementById('cog-fb').textContent='💡 Indice : '+currentExo.hint;
+  } catch {
+    zone.innerHTML='<p style="color:var(--muted);font-size:16px;">Erreur de connexion. Réessayez.</p>';
+  }
 }
+
 async function checkAnswer() {
   const ans=document.getElementById('cog-ans').value.trim();
   if(!ans||!currentExo)return;
-  const fb=document.getElementById('cog-fb'); document.getElementById('cog-check').disabled=true;
+  const fb=document.getElementById('cog-fb');
+  document.getElementById('cog-check').disabled=true;
   fb.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
   const sys=`Tu évalues des exercices cognitifs pour seniors avec bienveillance. Compare la réponse en 2-3 phrases courtes. Commence par ✅ si correct, 💭 si incorrect. Donne la bonne réponse si besoin.`;
   try {
@@ -389,14 +640,16 @@ async function checkAnswer() {
   document.getElementById('cog-check').disabled=false;
 }
 
-// OUTIL 2 & 4 CHAT
+// ── OUTIL 2 & 4 CHAT ──
 const hist={2:[],4:[]};
 const chatSys={
-  2:`Tu es un compagnon psychosocial bienveillant pour les personnes âgées. Tu écoutes avec empathie, sans jamais juger. Tu aides à apaiser l'anxiété et les insomnies avec des mots doux. Tu poses des questions ouvertes et chaleureuses. Réponds en français, 3-4 phrases max. Ton chaleureux et rassurant. Tu n'es pas médecin — en cas de détresse, encourage à contacter un professionnel.`,
+  2:`Tu es un compagnon psychosocial bienveillant pour les personnes âgées. Tu écoutes avec empathie, sans jamais juger. Tu aides à apaiser l'anxiété et les insomnies avec des mots doux. Tu poses des questions ouvertes et chaleureuses. Réponds en français, 3-4 phrases max. Ton chaleureux et rassurant. Tu n'es pas médecin — en cas de détresse, encourage doucement à contacter un professionnel.`,
   4:`Tu es un assistant de lien social pour les personnes âgées, spécialisé contre l'isolement. Tu animes des conversations enrichissantes sur les souvenirs, la famille, les passions. Tu es vif, chaleureux, curieux. Tu fais sentir à la personne qu'elle est intéressante et écoutée. Réponds en français, 3-5 phrases. Termine par une question ouverte.`
 };
+
 async function sendChat(id) {
-  const inp=document.getElementById('inp'+id); const msg=inp.value.trim(); if(!msg)return; inp.value='';
+  const inp=document.getElementById('inp'+id);
+  const msg=inp.value.trim(); if(!msg)return; inp.value='';
   const cw=document.getElementById('cw'+id);
   hist[id].push({role:'user',content:msg}); addMsg(cw,'user',msg);
   const tid='t'+Date.now();
@@ -406,8 +659,12 @@ async function sendChat(id) {
     const reply=await callClaude(chatSys[id],hist[id]);
     hist[id].push({role:'assistant',content:reply});
     document.getElementById(tid)?.remove(); addMsg(cw,'ai',reply);
-  } catch { document.getElementById(tid)?.remove(); addMsg(cw,'ai','Désolé, une erreur de connexion est survenue.'); }
+  } catch {
+    document.getElementById(tid)?.remove();
+    addMsg(cw,'ai','Désolé, une erreur de connexion est survenue. Réessayez dans un instant.');
+  }
 }
+
 function addMsg(cw,type,text) {
   const av=type==='ai'?'🌿':'👤';
   const d=document.createElement('div'); d.className='msg '+type;
@@ -415,22 +672,25 @@ function addMsg(cw,type,text) {
   cw.appendChild(d); cw.scrollTop=cw.scrollHeight;
 }
 
-// OUTIL 3 RISQUE CHUTE
+// ── OUTIL 3 RISQUE CHUTE ──
 const qa={};
-function setQ(btn,id,val) {
+function setQ(btn,id,val){
   btn.closest('.opts').querySelectorAll('.opt').forEach(b=>b.classList.remove('sel'));
   btn.classList.add('sel'); qa[id]=val;
   document.getElementById('eval-btn').disabled=!['q1','q2','q3','q4','q5'].every(q=>qa[q]);
 }
-async function evaluateRisk() {
-  const btn=document.getElementById('eval-btn'); const res=document.getElementById('risk-res');
+
+async function evaluateRisk(){
+  const btn=document.getElementById('eval-btn');
+  const res=document.getElementById('risk-res');
   btn.disabled=true; btn.textContent='Analyse en cours…';
-  res.className='result-area show'; res.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
+  res.className='result-area show';
+  res.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
   const sys=`Tu es professionnel de santé au travail spécialisé en prévention des chutes chez les seniors. Produis une analyse bienveillante en 4 parties : 1. 🎯 Niveau de risque global (faible/modéré/élevé) 2. 💪 Points positifs 3. ⚠️ Points de vigilance 4. 🌿 3 conseils concrets. Sois encourageant. Précise que ce n'est pas un avis médical.`;
   try {
     const r=await callClaude(sys,[{role:'user',content:`Chutes:${qa.q1}|Lever chaise:${qa.q2}|Sédentarité:${qa.q3}|Médicaments:${qa.q4}|Peur:${qa.q5}`}]);
     res.innerHTML=r.replace(/\n/g,'<br>');
-  } catch { res.innerHTML='Erreur lors de l\'analyse. Réessayez.'; }
+  } catch { res.innerHTML='Erreur lors de l\'analyse. Veuillez réessayer.'; }
   btn.disabled=false; btn.textContent='Analyser mon profil';
 }
 </script>
