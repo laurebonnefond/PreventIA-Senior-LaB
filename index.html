@@ -590,7 +590,7 @@ document.addEventListener('keydown', e => {
 const MAKE_URL = 'https://hook.eu1.make.com/cq6av0qcveaupj1to0gba7pgpa49fitb';
 
 async function callClaude(system, messages) {
-  const payload = JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 1000, system, messages });
+  const payload = JSON.stringify({ model: 'claude-sonnet-4-5', max_tokens: 1000, system, messages });
   const res = await fetch(MAKE_URL, {
     method: 'POST',
     headers: {
