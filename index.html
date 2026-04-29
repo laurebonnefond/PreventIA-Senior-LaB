@@ -26,11 +26,9 @@
   --sans: 'DM Sans', sans-serif;
   --radius: 20px;
 }
-
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
 body { font-family: var(--sans); background: var(--cream); color: var(--text); overflow-x: hidden; }
-
 /* ── HERO ── */
 .hero {
   min-height: 88vh; display: flex; flex-direction: column;
@@ -42,7 +40,6 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
     var(--cream);
   position: relative;
 }
-
 .hero-badge {
   display: inline-flex; align-items: center; gap: 8px;
   background: white; border: 1px solid rgba(201,151,58,0.25); border-radius: 40px;
@@ -51,31 +48,32 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   box-shadow: 0 2px 14px rgba(201,151,58,0.1);
   animation: fadeUp 0.6s ease both;
 }
-
 .hero h1 {
   font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 700;
   line-height: 1.06; color: var(--warm-brown); margin-bottom: 22px;
   animation: fadeUp 0.7s 0.08s ease both;
 }
 .hero h1 em { font-style: italic; color: var(--gold); }
-
 .hero p {
   font-size: clamp(1.05rem, 2vw, 1.2rem); color: var(--muted); font-weight: 300;
   max-width: 540px; line-height: 1.8; margin-bottom: 48px;
   animation: fadeUp 0.7s 0.15s ease both;
 }
-
 .hero-arrow {
   position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
   color: var(--gold); font-size: 24px; opacity: 0.55;
+  text-decoration: none; cursor: pointer;
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.25s ease;
   animation: fadeUp 1s 0.5s ease both, bob 2s 1.5s ease-in-out infinite;
 }
-
+.hero-arrow:hover { opacity: 1; background: rgba(201,151,58,0.12); transform: translateX(-50%) scale(1.1); }
+.hero-arrow:active { transform: translateX(-50%) scale(0.95); }
 /* ── SECTION HEADER ── */
-.section-header { text-align: center; padding: 80px 24px 48px; }
+.section-header { text-align: center; padding: 80px 24px 48px; scroll-margin-top: 20px; }
 .eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
 .section-header h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); color: var(--warm-brown); line-height: 1.2; }
-
 /* ── GRID CARDS ── */
 .grid {
   display: grid;
@@ -83,11 +81,9 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   gap: 24px;
   max-width: 1000px; margin: 0 auto; padding: 0 32px 90px;
 }
-
 @media (max-width: 640px) {
   .grid { grid-template-columns: 1fr; padding: 0 20px 60px; }
 }
-
 /* ── CARD ── */
 .card {
   background: white; border-radius: 24px; overflow: hidden;
@@ -96,10 +92,8 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
   user-select: none;
 }
-
 .card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(44,31,20,0.13); }
 .card:active { transform: scale(0.97); }
-
 .card-top {
   height: 140px; display: flex; align-items: center; justify-content: center;
   position: relative;
@@ -108,15 +102,12 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 .card-2 .card-top { background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%); }
 .card-3 .card-top { background: linear-gradient(135deg, var(--sage) 0%, var(--sage-light) 100%); }
 .card-4 .card-top { background: linear-gradient(135deg, var(--coral) 0%, var(--coral-light) 100%); }
-
 .card-emoji {
   font-size: 56px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
   transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
 }
 .card:hover .card-emoji { transform: scale(1.15) rotate(-5deg); }
-
 .card-body { padding: 24px 26px 28px; }
-
 .card-tag {
   display: inline-block; font-size: 11px; font-weight: 600;
   letter-spacing: 0.1em; text-transform: uppercase;
@@ -126,16 +117,14 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 .card-2 .card-tag { background: var(--teal-light); color: var(--teal); }
 .card-3 .card-tag { background: var(--sage-light); color: var(--sage); }
 .card-4 .card-tag { background: var(--coral-light); color: var(--coral); }
-
 .card-body h3 { font-family: var(--serif); font-size: 1.25rem; color: var(--warm-brown); margin-bottom: 8px; line-height: 1.3; }
 .card-body p { font-size: 13.5px; color: var(--muted); font-weight: 300; line-height: 1.65; margin-bottom: 18px; }
-
 .open-btn {
   display: flex; align-items: center; justify-content: center; gap: 8px;
   width: 100%; padding: 13px 20px; border-radius: 40px; border: none;
   font-family: var(--sans); font-size: 14px; font-weight: 600;
   cursor: pointer; transition: all 0.22s;
-  min-height: 48px; /* touch target */
+  min-height: 48px;
 }
 .card-1 .open-btn { background: var(--violet); color: white; }
 .card-2 .open-btn { background: var(--teal); color: white; }
@@ -143,7 +132,6 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 .card-4 .open-btn { background: var(--coral); color: white; }
 .open-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 .open-btn:active { transform: scale(0.97); }
-
 /* ── MODAL OVERLAY ── */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 1000;
@@ -155,7 +143,6 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   transition: opacity 0.3s ease;
 }
 .modal-overlay.open { opacity: 1; pointer-events: all; }
-
 /* ── MODAL PANEL ── */
 .modal {
   background: var(--cream);
@@ -169,7 +156,6 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   scrollbar-width: thin; scrollbar-color: rgba(201,151,58,0.2) transparent;
 }
 .modal-overlay.open .modal { transform: translateY(0) scale(1); }
-
 /* Modal header */
 .modal-head {
   padding: 28px 32px 24px;
@@ -178,7 +164,6 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   background: var(--cream);
   border-bottom: 1px solid rgba(44,31,20,0.08);
 }
-
 .modal-icon {
   font-size: 2.8rem; width: 64px; height: 64px;
   display: flex; align-items: center; justify-content: center;
@@ -188,11 +173,9 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 .m2 .modal-icon { background: var(--teal-light); }
 .m3 .modal-icon { background: var(--sage-light); }
 .m4 .modal-icon { background: var(--coral-light); }
-
 .modal-title { flex: 1; }
 .modal-title h2 { font-family: var(--serif); font-size: 1.65rem; color: var(--warm-brown); line-height: 1.2; margin-bottom: 4px; }
 .modal-title p { font-size: 14px; color: var(--muted); font-weight: 300; line-height: 1.5; }
-
 .close-btn {
   width: 48px; height: 48px; border-radius: 50%;
   background: var(--cream2); border: none; cursor: pointer;
@@ -201,10 +184,8 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   transition: all 0.2s; min-height: 48px;
 }
 .close-btn:hover { background: var(--warm-brown); color: white; }
-
 /* Modal body */
 .modal-body { padding: 28px 32px 36px; }
-
 /* ── SENIOR-FRIENDLY INPUTS ── */
 .s-input {
   width: 100%; background: white;
@@ -215,7 +196,6 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 }
 .s-input:focus { border-color: var(--gold); }
 .s-input::placeholder { color: var(--muted); }
-
 .s-btn {
   padding: 16px 28px; border-radius: 40px; border: none;
   cursor: pointer; font-family: var(--sans); font-size: 16px; font-weight: 600;
@@ -228,7 +208,8 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 .btn-v { background: var(--violet); color: white; }
 .btn-g { background: var(--gold); color: white; }
 .btn-s { background: var(--sage); color: white; }
-
+.btn-erase { background: var(--cream2); color: var(--warm-brown); border: 2px solid rgba(44,31,20,0.1); min-width: 110px; }
+.btn-erase:hover { background: var(--warm-brown); color: white; border-color: var(--warm-brown); filter: none; }
 /* ── CHAT ── */
 .chat-win {
   background: white; border-radius: 18px; border: 1.5px solid rgba(44,31,20,0.08);
@@ -236,17 +217,14 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   overflow-y: auto; display: flex; flex-direction: column; gap: 14px;
   margin-bottom: 16px; scrollbar-width: thin;
 }
-
 .msg { display: flex; gap: 10px; align-items: flex-start; animation: fadeUp 0.3s ease both; }
 .msg.user { flex-direction: row-reverse; }
-
 .msg-av {
   width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
   font-size: 18px; background: rgba(201,151,58,0.1);
 }
 .msg.user .msg-av { background: rgba(44,31,20,0.06); }
-
 .msg-bubble {
   max-width: 78%; padding: 14px 18px;
   font-size: 16px; line-height: 1.7; font-weight: 300; color: var(--text);
@@ -254,9 +232,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 }
 .msg.ai  .msg-bubble { background: var(--cream2); border-radius: 4px 18px 18px 18px; }
 .msg.user .msg-bubble { background: rgba(201,151,58,0.12); border-radius: 18px 4px 18px 18px; text-align: right; }
-
 .chat-row { display: flex; gap: 10px; }
-
 /* ── EXERCISE ── */
 .exo-zone {
   background: white; border-radius: 18px; border: 1.5px solid rgba(44,31,20,0.08);
@@ -264,39 +240,29 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
   margin-bottom: 18px;
 }
-
 .exo-badge {
   font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--violet); background: var(--violet-light); padding: 5px 14px; border-radius: 20px;
 }
-
 .exo-question {
   font-family: var(--serif); font-style: italic;
   font-size: 1.5rem; color: var(--warm-brown); line-height: 1.4; max-width: 480px;
 }
-
 .score-row {
   display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
 }
 .score-label { font-size: 14px; color: var(--muted); }
 .score-val { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; color: var(--violet); }
-
 .ans-row { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
-
 .feedback-box {
   background: white; border-radius: 14px; border: 1.5px solid rgba(44,31,20,0.08);
   padding: 16px 20px; font-size: 16px; line-height: 1.75; color: var(--muted); font-weight: 300;
 }
-
 /* ── QUESTIONNAIRE ── */
 .q-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; }
-
 .q-item { background: white; border-radius: 16px; border: 1.5px solid rgba(44,31,20,0.08); padding: 18px 22px; }
-
 .q-text { font-size: 16px; color: var(--text); margin-bottom: 14px; line-height: 1.55; font-weight: 400; }
-
 .opts { display: flex; gap: 10px; flex-wrap: wrap; }
-
 .opt {
   padding: 10px 20px; border-radius: 40px;
   border: 2px solid rgba(44,31,20,0.12); background: var(--cream);
@@ -305,14 +271,12 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 }
 .opt:hover { border-color: var(--sage); color: var(--sage); background: var(--sage-light); }
 .opt.sel { background: var(--sage-light); border-color: var(--sage); color: var(--sage); font-weight: 600; }
-
 .result-area {
   background: white; border-radius: 16px; border: 1.5px solid rgba(44,31,20,0.08);
   padding: 20px 22px; font-size: 15.5px; line-height: 1.85; color: var(--text);
   font-weight: 300; display: none; margin-top: 16px;
 }
 .result-area.show { display: block; }
-
 /* ── ABOUT BAND ── */
 .about-band { background: var(--warm-brown); color: #FAF6EF; padding: 80px 40px; }
 .about-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
@@ -323,12 +287,10 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 .stat { text-align: center; padding: 22px 16px; background: rgba(255,255,255,0.05); border-radius: 16px; border: 1px solid rgba(255,255,255,0.07); }
 .stat-n { font-family: var(--serif); font-size: 2.2rem; color: var(--gold-light); display: block; line-height: 1; margin-bottom: 6px; }
 .stat-l { font-size: 12px; color: rgba(250,246,239,0.55); line-height: 1.4; }
-
 @media (max-width: 640px) {
   .about-inner { grid-template-columns: 1fr; gap: 40px; }
   .about-band { padding: 60px 24px; }
 }
-
 /* ── FEEDBACK ── */
 .feedback-section { max-width: 600px; margin: 70px auto; padding: 0 24px; text-align: center; }
 .feedback-card { background: white; border-radius: 24px; padding: 40px 36px; box-shadow: 0 4px 28px rgba(44,31,20,0.07); }
@@ -336,25 +298,20 @@ body { font-family: var(--sans); background: var(--cream); color: var(--text); o
 .feedback-card p { font-size: 15px; color: var(--muted); font-weight: 300; line-height: 1.75; margin-bottom: 28px; }
 .feedback-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--warm-brown); color: #FAF6EF; padding: 15px 32px; border-radius: 40px; text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.22s; min-height: 52px; }
 .feedback-btn:hover { background: var(--gold); transform: translateY(-2px); }
-
 /* ── FOOTER ── */
 footer { text-align: center; padding: 24px; font-size: 13px; color: var(--muted); border-top: 1px solid rgba(44,31,20,0.08); font-weight: 300; }
 footer strong { color: var(--warm-brown); font-weight: 500; }
-
 /* ── TYPING ── */
 .typing { display: flex; gap: 6px; align-items: center; padding: 4px 0; }
 .typing span { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: pulse 1.2s ease infinite; }
 .typing span:nth-child(2) { animation-delay: 0.2s; }
 .typing span:nth-child(3) { animation-delay: 0.4s; }
-
 /* ── ANIMATIONS ── */
 @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
 @keyframes bob { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(8px); } }
 @keyframes pulse { 0%,80%,100% { opacity:0.2; transform:scale(0.85); } 40% { opacity:1; transform:scale(1); } }
-
 .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.65s ease, transform 0.65s ease; }
 .reveal.visible { opacity:1; transform:translateY(0); }
-
 /* ── MODAL RESPONSIVE ── */
 @media (max-width: 640px) {
   .modal { border-radius: 24px 24px 0 0; max-height: 95vh; }
@@ -367,34 +324,29 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
 </style>
 </head>
 <body>
-
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">🌿 PréventIA Senior LaB · Limoges 2026</div>
   <h1>L'IA qui prend <em>soin</em><br>des seniors</h1>
   <p>Quatre outils intelligents pour stimuler l'esprit, apaiser les nuits, prévenir les chutes et recréer du lien.</p>
-  <div class="hero-arrow">↓</div>
+  <a href="#section-tools" class="hero-arrow" aria-label="Aller aux outils">↓</a>
 </section>
-
 <!-- SECTION HEADER -->
-<div class="section-header reveal">
+<div class="section-header reveal" id="section-tools">
   <p class="eyebrow">4 outils IA à tester</p>
   <h2>Des solutions pensées<br>pour et avec les seniors</h2>
 </div>
-
 <!-- GRID -->
 <div class="grid">
-
   <div class="card card-1 reveal" onclick="openModal('m1')">
     <div class="card-top"><span class="card-emoji">🧠</span></div>
     <div class="card-body">
       <span class="card-tag">Cognition</span>
       <h3>Stimuler l'Esprit</h3>
-      <p>Exercices adaptatifs de mémoire, langage et raisonnement générés par IA.</p>
+      <p>Exercices adaptatifs de mémoire, langage, calcul et raisonnement générés par IA.</p>
       <button class="open-btn">▶ &nbsp;Essayer l'outil</button>
     </div>
   </div>
-
   <div class="card card-2 reveal" onclick="openModal('m2')">
     <div class="card-top"><span class="card-emoji">😌</span></div>
     <div class="card-body">
@@ -404,7 +356,6 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
       <button class="open-btn">▶ &nbsp;Ouvrir la conversation</button>
     </div>
   </div>
-
   <div class="card card-3 reveal" onclick="openModal('m3')">
     <div class="card-top"><span class="card-emoji">🏃</span></div>
     <div class="card-body">
@@ -414,7 +365,6 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
       <button class="open-btn">▶ &nbsp;Démarrer l'évaluation</button>
     </div>
   </div>
-
   <div class="card card-4 reveal" onclick="openModal('m4')">
     <div class="card-top"><span class="card-emoji">🤝</span></div>
     <div class="card-body">
@@ -424,9 +374,7 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
       <button class="open-btn">▶ &nbsp;Commencer une conversation</button>
     </div>
   </div>
-
 </div>
-
 <!-- ══ MODAL 1 : COGNITION ══ -->
 <div class="modal-overlay" id="overlay-m1" onclick="closeOnBg(event,'m1')">
   <div class="modal m1">
@@ -434,7 +382,7 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
       <div class="modal-icon">🧠</div>
       <div class="modal-title">
         <h2>Stimuler l'Esprit</h2>
-        <p>Exercices de mémoire, langage et raisonnement</p>
+        <p>Mémoire · Langage · Calcul · Raisonnement</p>
       </div>
       <button class="close-btn" onclick="closeModal('m1')">✕</button>
     </div>
@@ -447,7 +395,8 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
         <p style="color:var(--muted);font-size:17px;">Appuyez sur « Nouvel exercice » pour commencer</p>
       </div>
       <div class="ans-row">
-        <input class="s-input" id="cog-ans" placeholder="Votre réponse…" onkeydown="if(event.key==='Enter')checkAnswer()" style="flex:1;">
+        <input class="s-input" id="cog-ans" placeholder="Votre réponse…" onkeydown="if(event.key==='Enter')checkAnswer()" style="flex:1;min-width:180px;">
+        <button class="s-btn btn-erase" onclick="clearAnswer()" title="Effacer la réponse">✕ Effacer</button>
         <button class="s-btn btn-v" id="cog-check" onclick="checkAnswer()" disabled>Valider</button>
         <button class="s-btn btn-g" onclick="newExercise()">Nouvel exercice</button>
       </div>
@@ -455,7 +404,6 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
     </div>
   </div>
 </div>
-
 <!-- ══ MODAL 2 : PSYCHOSOCIAL ══ -->
 <div class="modal-overlay" id="overlay-m2" onclick="closeOnBg(event,'m2')">
   <div class="modal m2">
@@ -481,7 +429,6 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
     </div>
   </div>
 </div>
-
 <!-- ══ MODAL 3 : CHUTE ══ -->
 <div class="modal-overlay" id="overlay-m3" onclick="closeOnBg(event,'m3')">
   <div class="modal m3">
@@ -506,7 +453,6 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
     </div>
   </div>
 </div>
-
 <!-- ══ MODAL 4 : LIEN SOCIAL ══ -->
 <div class="modal-overlay" id="overlay-m4" onclick="closeOnBg(event,'m4')">
   <div class="modal m4">
@@ -532,7 +478,6 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
     </div>
   </div>
 </div>
-
 <!-- ABOUT -->
 <section class="about-band">
   <div class="about-inner">
@@ -548,7 +493,6 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
     </div>
   </div>
 </section>
-
 <!-- FEEDBACK -->
 <div class="feedback-section reveal">
   <div class="feedback-card">
@@ -557,19 +501,16 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
     <a class="feedback-btn" href="mailto:laure.bonnefond@spsti2387.fr">✉️ &nbsp;Envoyer un retour</a>
   </div>
 </div>
-
 <!-- FOOTER -->
 <footer>
   <strong>PréventIA Senior LaB</strong> · Limoges 2026 · Claude (Anthropic) · Open Source · Usage non-médical
 </footer>
-
 <script>
 // ── REVEAL ──
 const obs = new IntersectionObserver(entries => {
   entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*90); obs.unobserve(e.target); } });
 },{ threshold:0.1 });
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
 // ── MODAL ──
 function openModal(id) {
   document.getElementById('overlay-'+id).classList.add('open');
@@ -585,10 +526,8 @@ function closeOnBg(e, id) {
 document.addEventListener('keydown', e => {
   if(e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(o => { o.classList.remove('open'); document.body.style.overflow=''; });
 });
-
 // ── CLAUDE API via Make.com proxy (clé sécurisée) ──
 const MAKE_URL = 'https://hook.eu1.make.com/cq6av0qcveaupj1to0gba7pgpa49fitb';
-
 async function callClaude(system, messages) {
   const payload = JSON.stringify({ model: 'claude-sonnet-4-5', max_tokens: 1000, system, messages });
   const res = await fetch(MAKE_URL, {
@@ -606,49 +545,67 @@ async function callClaude(system, messages) {
     return text || 'Désolé, une erreur est survenue.';
   }
 }
-
 // ── OUTIL 1 COGNITION ──
 let cogScore=0, currentExo=null;
-
+const exoTypes = ['Mémoire','Langage','Calcul','Raisonnement','Culture générale'];
+let lastTypeIndex = -1;
+function nextType() {
+  // Rotation séquentielle pour vraie alternance
+  lastTypeIndex = (lastTypeIndex + 1) % exoTypes.length;
+  return exoTypes[lastTypeIndex];
+}
+function clearAnswer() {
+  const inp = document.getElementById('cog-ans');
+  inp.value = '';
+  inp.focus();
+}
 async function newExercise() {
   const zone=document.getElementById('exo-zone');
   document.getElementById('cog-ans').value='';
   document.getElementById('cog-check').disabled=true;
   zone.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
-  const sys=`Tu es expert en stimulation cognitive pour seniors. Génère un exercice court et bienveillant. Réponds UNIQUEMENT en JSON valide sans markdown : {"type":"Mémoire|Langage|Raisonnement|Culture générale","question":"...","answer":"...","hint":"..."}`;
+  const targetType = nextType();
+  const sys=`Tu es expert en stimulation cognitive pour seniors (70-85 ans). Génère UN exercice court, bienveillant, de difficulté modérée, du type imposé. Réponds UNIQUEMENT en JSON valide sans markdown, sans backticks : {"type":"${targetType}","question":"...","answer":"...","hint":"..."}
+
+CONSIGNES PAR TYPE :
+- Mémoire : liste de 4 à 5 mots à mémoriser puis restituer dans l'ordre OU détail à mémoriser puis question.
+- Langage : trouver un synonyme, un antonyme, compléter un proverbe, ou définir un mot.
+- Calcul : opération mentale simple (addition, soustraction, multiplication d'un chiffre par dizaine, conversion euros, calcul de pourcentage simple). Niveau collège max.
+- Raisonnement : énigme courte, suite logique simple, ou problème de bon sens.
+- Culture générale : question sur géographie, histoire, nature, art ou vie courante française.
+
+La réponse "answer" doit être COURTE (1 mot, 1 nombre ou 1 phrase courte). L'indice "hint" doit aider sans donner la réponse.`;
   try {
-    const raw=(await callClaude(sys,[{role:'user',content:'Génère un exercice cognitif varié pour une personne de 70-85 ans.'}])).replace(/```json|```/g,'').trim();
+    const raw=(await callClaude(sys,[{role:'user',content:`Génère un exercice de type "${targetType}" pour une personne de 70-85 ans.`}])).replace(/```json|```/g,'').trim();
     currentExo=JSON.parse(raw);
     zone.innerHTML=`<span class="exo-badge">${currentExo.type}</span><p class="exo-question">${currentExo.question}</p>`;
     document.getElementById('cog-check').disabled=false;
     document.getElementById('cog-fb').textContent='💡 Indice : '+currentExo.hint;
+    document.getElementById('cog-ans').focus();
   } catch {
     zone.innerHTML='<p style="color:var(--muted);font-size:16px;">Erreur de connexion. Réessayez.</p>';
   }
 }
-
 async function checkAnswer() {
   const ans=document.getElementById('cog-ans').value.trim();
   if(!ans||!currentExo)return;
   const fb=document.getElementById('cog-fb');
   document.getElementById('cog-check').disabled=true;
   fb.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
-  const sys=`Tu évalues des exercices cognitifs pour seniors avec bienveillance. Compare la réponse en 2-3 phrases courtes. Commence par ✅ si correct, 💭 si incorrect. Donne la bonne réponse si besoin.`;
+  const sys=`Tu évalues des exercices cognitifs pour seniors avec bienveillance. Compare la réponse en 2-3 phrases courtes. Commence par ✅ si correct (ou globalement correct), 💭 si incorrect. Donne la bonne réponse si besoin. Pour les exercices de mémoire de mots dans l'ordre : si l'ordre est juste mais qu'il manque un mot, encourage et précise. Pour les exercices de calcul : accepte la réponse même si elle est écrite en chiffres ou en lettres.`;
   try {
-    const reply=await callClaude(sys,[{role:'user',content:`Question:"${currentExo.question}" Bonne réponse:"${currentExo.answer}" Réponse:"${ans}"`}]);
+    const reply=await callClaude(sys,[{role:'user',content:`Type:${currentExo.type}|Question:"${currentExo.question}"|Bonne réponse:"${currentExo.answer}"|Réponse de la personne:"${ans}"`}]);
     fb.textContent=reply;
     if(reply.startsWith('✅')){ cogScore+=10; document.getElementById('cog-score').textContent=cogScore+' pts'; }
   } catch { fb.textContent='Erreur lors de la vérification.'; }
   document.getElementById('cog-check').disabled=false;
 }
-
 // ── OUTIL 2 & 4 CHAT ──
 const hist={2:[],4:[]};
 const chatSys={
   2:`Tu es un compagnon psychosocial bienveillant pour les personnes âgées. Tu écoutes avec empathie, sans jamais juger. Tu aides à apaiser l'anxiété et les insomnies avec des mots doux. Tu poses des questions ouvertes et chaleureuses. Réponds en français, 3-4 phrases max. Ton chaleureux et rassurant. Tu n'es pas médecin — en cas de détresse, encourage doucement à contacter un professionnel.`,
   4:`Tu es un assistant de lien social pour les personnes âgées, spécialisé contre l'isolement. Tu animes des conversations enrichissantes sur les souvenirs, la famille, les passions. Tu es vif, chaleureux, curieux. Tu fais sentir à la personne qu'elle est intéressante et écoutée. Réponds en français, 3-5 phrases. Termine par une question ouverte.`
 };
-
 async function sendChat(id) {
   const inp=document.getElementById('inp'+id);
   const msg=inp.value.trim(); if(!msg)return; inp.value='';
@@ -666,14 +623,12 @@ async function sendChat(id) {
     addMsg(cw,'ai','Désolé, une erreur de connexion est survenue. Réessayez dans un instant.');
   }
 }
-
 function addMsg(cw,type,text) {
   const av=type==='ai'?'🌿':'👤';
   const d=document.createElement('div'); d.className='msg '+type;
   d.innerHTML=`<div class="msg-av">${av}</div><div class="msg-bubble">${text}</div>`;
   cw.appendChild(d); cw.scrollTop=cw.scrollHeight;
 }
-
 // ── OUTIL 3 RISQUE CHUTE ──
 const qa={};
 function setQ(btn,id,val){
@@ -681,7 +636,6 @@ function setQ(btn,id,val){
   btn.classList.add('sel'); qa[id]=val;
   document.getElementById('eval-btn').disabled=!['q1','q2','q3','q4','q5'].every(q=>qa[q]);
 }
-
 async function evaluateRisk(){
   const btn=document.getElementById('eval-btn');
   const res=document.getElementById('risk-res');
