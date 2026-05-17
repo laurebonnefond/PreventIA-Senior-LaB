@@ -366,7 +366,7 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
     </div>
   </div>
   <div class="card card-4 reveal" onclick="openModal('m4')">
-    <div class="card-top"><span class="card-emoji">🤝</span></div>
+    <div class="card-top"><span class="card-emoji">img</span></div>
     <div class="card-body">
       <span class="card-tag">Lien social</span>
       <h3>Recréer du Lien</h3>
@@ -457,7 +457,104 @@ footer strong { color: var(--warm-brown); font-weight: 500; }
 <div class="modal-overlay" id="overlay-m4" onclick="closeOnBg(event,'m4')">
   <div class="modal m4">
     <div class="modal-head">
-      <div class="modal-icon">🤝</div>
+      <div class="modal-icon">img 
+    src="assets/img/laure-bonnefond.png" 
+    alt="Laure Bonnefond - Infirmière santé au travail"
+    style="
+      width: 48px; 
+      height: 48px; 
+      border-radius: 50%; 
+      object-fit: cover;
+      object-position: center top;
+      border: 2px solid #f9e4d4;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    "
+  />
+</div>
+
+object-position: center top cadre sur le visage, pas la veste.
+
+
+Étape 3 — Section "Créée par" sur la homepage
+À placer en bas de page ou dans l'en-tête :
+html<section class="auteure-card">
+  <div class="auteure-avatar">
+    <img 
+      src="assets/img/laure-bonnefond.png" 
+      alt="Laure Bonnefond"
+      style="
+        width: 80px; 
+        height: 80px; 
+        border-radius: 50%; 
+        object-fit: cover;
+        object-position: center top;
+        border: 3px solid var(--color-primary, #7c6f9f);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      "
+    />
+  </div>
+  <div class="auteure-info">
+    <p class="auteure-nom">Laure Bonnefond</p>
+    <p class="auteure-titre">Infirmière santé au travail · IPRP</p>
+    <p class="auteure-desc">
+      Créatrice de PréventIA Senior LaB — outils numériques 
+      au service du bien-vieillir et de la prévention.
+    </p>
+  </div>
+</section>
+Avec le CSS associé :
+css.auteure-card {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem 1.5rem;
+  background: #faf7f4;
+  border-radius: 16px;
+  border-left: 4px solid var(--color-primary, #7c6f9f);
+  max-width: 480px;
+  margin: 2rem auto;
+}
+
+.auteure-nom {
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0 0 0.2rem;
+}
+
+.auteure-titre {
+  font-size: 0.82rem;
+  color: #7c6f9f;
+  margin: 0 0 0.4rem;
+  font-style: italic;
+}
+
+.auteure-desc {
+  font-size: 0.82rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.4;
+}
+
+Tu veux que je regarde le code source actuel de ton index.html Senior LaB pour intégrer directement aux bons endroits ?Vous avez dit : Je vais essayer de le faire seule pour apprendre.Je vais essayer de le faire seule pour apprendre. Merci19:01Claude a répondu : Excellent réflexe — c'est exactement comme ça qu'on apprend !Recognized learner's autonomy and prepared encouragementRecognized learner's autonomy and prepared encouragementExcellent réflexe — c'est exactement comme ça qu'on apprend ! 💪
+Tu as tout le code prêt à coller, et si tu bloques sur un point précis (chemin du fichier, objet-fit qui ne cadre pas bien, ou autre), reviens avec une capture et on ajuste ensemble.
+Bon courage pour l'intégration ! 🚀Vous avez dit : je mets tout ca (adroite) a la place des >2 mains a gaucheje mets tout ca (adroite) a la place des >2 mains a gauche22:29Claude a répondu : Non, pas tout !Clarified le remplacement du emoji par le code avatarClarified le remplacement du emoji par le code avatarNon, pas tout ! Tu ne remplaces que l'emoji, pas toute la div. Voici exactement quoi faire :
+Ligne 369 — tu as actuellement :
+html<div class="card-top"><span class="card-emoji">🤝</span></div>
+Tu remplaces seulement 🤝 par l'image :
+html<div class="card-top">
+  <img 
+    src="assets/img/laure-bonnefond.png" 
+    alt="Laure Bonnefond"
+    style="width:48px;height:48px;border-radius:50%;object-fit:cover;object-position:center top;"
+  />
+</div>
+
+⚠️ Le bloc <div class="bot-avatar"> que je t'avais donné c'est pour l'intérieur du chatbot (la fenêtre modale), pas pour la carte. Ce sont deux endroits différents :
+
+Carte d'accueil (ligne 369) → juste remplacer l'emoji 🤝 par <img>
+Intérieur du chatbot → chercher l'emoji 🤝 dans la section <!-- MODAL correspondante (autour de la ligne 378+)
+
+Tu veux que je t'indique la ligne exacte du modal aussi ?</div>
       <div class="modal-title">
         <h2>Recréer du Lien</h2>
         <p>Un assistant chaleureux contre l'isolement</p>
