@@ -530,8 +530,19 @@ document.addEventListener('keydown', e => {
 });
 // ── CLAUDE API via Make.com proxy (clé sécurisée) ──
 const MAKE_URL = 'https://hook.eu1.make.com/qhvt4lylqgbykqljwd1sdybpdaoapedu';
+  // APRÈS (à ajouter juste sous MAKE_URL)
+const MAKE_TOKEN    = 'previa_text_2026_xxx';
+const CLAUDE_MODEL  = 'claude-haiku-4-5';
+const MAX_TOKENS    = 1000;
 async function callClaude(system, messages) {
-  const payload = JSON.stringify({ model: 'claude-sonnet-4-5', max_tokens: 1000, system, messages });
+ // APRÈS (sur plusieurs lignes pour lisibilité)
+const payload = JSON.stringify({
+  token: MAKE_TOKEN,
+  model: CLAUDE_MODEL,
+  max_tokens: MAX_TOKENS,
+  system,
+  messages
+});
   const res = await fetch(MAKE_URL, {
     method: 'POST',
     headers: {
