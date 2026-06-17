@@ -529,7 +529,7 @@ document.addEventListener('keydown', e => {
   if(e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(o => { o.classList.remove('open'); document.body.style.overflow=''; });
 });
 // ── CLAUDE API via Make.com proxy (clé sécurisée) ──
-const MAKE_URL = 'https://hook.eu1.make.com/cq6av0qcveaupj1to0gba7pgpa49fitb';
+const MAKE_URL = 'https://hook.eu1.make.com/qhvt4lylqgbykqljwd1sdybpdaoapedu';
 async function callClaude(system, messages) {
   const payload = JSON.stringify({ model: 'claude-sonnet-4-5', max_tokens: 1000, system, messages });
   const res = await fetch(MAKE_URL, {
